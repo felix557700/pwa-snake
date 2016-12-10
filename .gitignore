@@ -35,3 +35,17 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# User-specific stuff:
+.idea/
+
+*.iws
+*.iml
+modules.xml
+*.ipr
+/out/
+
+.idea_modules/
+
+
+
