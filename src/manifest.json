@@ -1,0 +1,31 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "name": "PWA Snake",
+  "short_name": "PWA Snake",
+  "description": "The awesome futuristic progressive web app snake game",
+
+  "icons": [
+    {
+      "src": "icons/icon@48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }, {
+      "src": "icons/icon@96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },{
+      "src": "icons/icon@128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },{
+      "src": "icons/icon@256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#3f51b5",
+  "display": "standalone",
+  "theme_color": "#3f51b5"
+}
