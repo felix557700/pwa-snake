@@ -5,7 +5,7 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
-var static_path = path.join(__dirname, 'dist');
+var static_path = path.join(__dirname, 'src');
 
 app.use(express.static(static_path))
     .get('/*', function (req, res) {

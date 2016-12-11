@@ -2,9 +2,12 @@
  * Created by filipv on 04/12/16.
  */
 
-var canvasWidth,
+var maxWidth = 600,
+    maxHeight = 600,
+    canvasWidth,
     canvasHeight,
-    segment = 20
+    segment = 20,
+    gameEnded = false
 
 var numberOfColumns = 0,
     numberOfRows = 0
@@ -13,13 +16,13 @@ var snake,
     food
 
 function setup() {
-    canvasWidth = windowWidth
-    canvasHeight = windowHeight - 100
+    canvasWidth = windowWidth < maxWidth ? windowWidth : maxWidth
+    canvasHeight = windowHeight < maxHeight ? windowHeight - 100 : maxHeight - 100
 
     numberOfColumns = Math.floor(canvasWidth / segment)
     numberOfRows = Math.floor(canvasHeight / segment)
 
-    frameRate(11)
+    frameRate(16)
     createCanvas(numberOfColumns * segment, numberOfRows * segment)
 
     snake = new Snake()
@@ -36,16 +39,17 @@ function pickFoodLocation() {
 
 function draw() {
     background(51)
+
     if (snake.isDead()) {
-        snake.spawn()
-        window.navigator && window.navigator.vibrate(200);
+        !gameEnded && window.navigator && window.navigator.vibrate(200)
+        gameEnded = true
+    } else {
+        if (snake.eat(food)) {
+            food = pickFoodLocation()
+        }
+        snake.move()
     }
 
-    if (snake.eat(food)) {
-        food = pickFoodLocation()
-    }
-
-    snake.update()
     snake.show()
 
     fill(255, 0, 100)
@@ -53,7 +57,10 @@ function draw() {
 }
 
 function mousePressed() {
-    snake.total++
+    // snake.total++
+    if (snake.isDead()) {
+        snake.reset()
+    }
 }
 
 function keyPressed() {
@@ -69,13 +76,16 @@ function keyPressed() {
 }
 
 function windowResized() {
+    canvasWidth = windowWidth < maxWidth ? windowWidth : maxWidth
+    canvasHeight = windowHeight < maxHeight ? windowHeight - 100 : maxHeight - 100
+
     numberOfColumns = Math.floor(canvasWidth / segment)
     numberOfRows = Math.floor(canvasHeight / segment)
 
     resizeCanvas(numberOfColumns * segment, numberOfRows * segment)
 
     food = pickFoodLocation()
-    snake = new Snake()
+    snake.reset()
 }
 
 var xPosition, yPosition;
@@ -89,7 +99,6 @@ document.addEventListener('touchstart', function(e){
 
 
 document.addEventListener('touchend', function onFirstTouch(e) {
-    debugger
     var x = parseInt(e.changedTouches[0].clientX) - xPosition // calculate dist traveled by touch point
     var y = parseInt(e.changedTouches[0].clientY) - yPosition // calculate dist traveled by touch point
 
