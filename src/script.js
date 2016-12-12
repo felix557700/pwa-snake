@@ -22,7 +22,7 @@ function setup() {
     numberOfColumns = Math.floor(canvasWidth / segment)
     numberOfRows = Math.floor(canvasHeight / segment)
 
-    frameRate(16)
+    frameRate(14)
     createCanvas(numberOfColumns * segment, numberOfRows * segment)
 
     snake = new Snake()
