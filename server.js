@@ -15,14 +15,14 @@ var credentials = {
     cert: fs.readFileSync('src/ssl/cert.pem')
 };
 
-function ensureSecure(req, res, next){
-    if(req.secure){
-        return next();
-    }
-    res.redirect('https://' + req.hostname + req.url);
-}
+// function ensureSecure(req, res, next){
+//     if(req.secure){
+//         return next();
+//     }
+//     res.redirect('https://' + req.hostname + req.url);
+// }
 
-app.all('*', ensureSecure);
+// app.all('*', ensureSecure);
 
 app.use(express.static(static_path))
     .get('/*', function (req, res) {
@@ -31,13 +31,13 @@ app.use(express.static(static_path))
 
 
 var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+// var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(8080,function (err) {
     if (err) { console.log(err) }
     console.log('Listening at port 8080');
 });
-httpsServer.listen(8443, function (err) {
-    if (err) { console.log(err) }
-    console.log('Listening at port 8443');
-})
+// httpsServer.listen(8443, function (err) {
+//     if (err) { console.log(err) }
+//     console.log('Listening at port 8443');
+// })

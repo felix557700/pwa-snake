@@ -4,7 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "server:start": "node server",
+    "server": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
