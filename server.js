@@ -33,9 +33,9 @@ app.use(express.static(static_path))
 var httpServer = http.createServer(app);
 // var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(8080,function (err) {
+httpServer.listen(process.env.PORT || 8080, process.env.HOST_NAME || 'localhost', function (err) {
     if (err) { console.log(err) }
-    console.log('Listening at port 8080');
+    console.log('Its show time!');
 });
 // httpsServer.listen(8443, function (err) {
 //     if (err) { console.log(err) }
