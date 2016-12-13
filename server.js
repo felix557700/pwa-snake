@@ -10,10 +10,10 @@ var app = express();
 
 var static_path = path.join(__dirname, 'src');
 
-var credentials = {
-    key: fs.readFileSync('src/ssl/key.pem'),
-    cert: fs.readFileSync('src/ssl/cert.pem')
-};
+// var credentials = {
+//     key: fs.readFileSync('src/ssl/key.pem'),
+//     cert: fs.readFileSync('src/ssl/cert.pem')
+// };
 
 // function ensureSecure(req, res, next){
 //     if(req.secure){
